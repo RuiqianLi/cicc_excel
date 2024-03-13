@@ -257,8 +257,11 @@ class ExcelWriter(object):
         """
         ws = self.workbook.get_worksheet_by_name(sheet_name)
         if ws is not None:
-            for col in range(start_col, end_col):
-                ws.set_column(col-1, col, None, None, {'hidden': True})
+            if start_col == end_col:
+                ws.set_column(start_col-1, start_col, None, None, {'hidden': True})
+            else:
+                for col in range(start_col, end_col):
+                    ws.set_column(col-1, col, None, None, {'hidden': True})
         else:
             print("Error: worksheets", sheet_name, "not found")
     
@@ -269,8 +272,11 @@ class ExcelWriter(object):
         ws = self.workbook.get_worksheet_by_name(sheet_name)
         if ws is not None:
         #collapsed note does not work, use hidden + level instead.
-            for col in range(start_col, end_col):
-                ws.set_column(col-1, col, None, None, {'hidden': True, 'level': 1})
+            if start_col == end_col:
+                ws.set_column(start_col-1, start_col, None, None, {'hidden': True, 'level': 1})
+            else:
+                for col in range(start_col, end_col):
+                    ws.set_column(col-1, col, None, None, {'hidden': True, 'level': 1})
         else:
             print("Error: worksheets", sheet_name, "not found")
     
