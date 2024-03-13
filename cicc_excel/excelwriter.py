@@ -258,7 +258,7 @@ class ExcelWriter(object):
         ws = self.workbook.get_worksheet_by_name(sheet_name)
         if ws is not None:
             if start_col == end_col:
-                ws.set_column(start_col, start_col, None, None, {'hidden': True})
+                ws.set_column(start_col-1, start_col-1, None, None, {'hidden': True})
             else:
                 for col in range(start_col, end_col):
                     ws.set_column(col-1, col, None, None, {'hidden': True})
@@ -273,7 +273,7 @@ class ExcelWriter(object):
         if ws is not None:
         #collapsed note does not work, use hidden + level instead.
             if start_col == end_col:
-                ws.set_column(start_col, start_col, None, None, {'hidden': True, 'level': 1})
+                ws.set_column(start_col-1, start_col-1, None, None, {'hidden': True, 'level': 1})
             else:
                 for col in range(start_col, end_col):
                     ws.set_column(col-1, col, None, None, {'hidden': True, 'level': 1})
